@@ -9,11 +9,15 @@ import {
   Patch,
   Post,
   Put,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { CarsService } from './cars.service';
 import { CreateCarDto } from './dtos/create-car.dto';
+import { UpdateCarDto } from './dtos/update-car.dto';
 
 @Controller('cars')
+@UsePipes(ValidationPipe)
 export class CarsController {
   constructor(private readonly carsService: CarsService) {}
 
@@ -29,19 +33,15 @@ export class CarsController {
 
   @Post()
   createCar(@Body() createCarDto: CreateCarDto) {
-    return {
-      ok: true,
-      payload: createCarDto,
-    };
+    return this.carsService.create(createCarDto);
   }
 
   @Patch(':id')
-  patchCar(@Param('id', ParseUUIDPipe) id: string, @Body() payload) {
-    return {
-      ok: true,
-      id,
-      payload,
-    };
+  patchCar(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() updateCarDto: UpdateCarDto,
+  ) {
+    return this.carsService.update(id, updateCarDto);
   }
 
   @Put(':id')
