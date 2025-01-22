@@ -10,11 +10,11 @@ import { Brand } from './entities/brand.entity';
 @Injectable()
 export class BrandsService {
   private brands: Brand[] = [
-    {
+    /* {
       id: '11482f2c-ee1d-4938-968d-574fa82baec7',
       name: 'Audi',
       createAt: 1737580673,
-    },
+    }, */
   ];
 
   create(createBrandDto: CreateBrandDto) {
@@ -65,5 +65,9 @@ export class BrandsService {
   remove(id: string) {
     this.findOne(id);
     this.brands = this.brands.filter((brand) => brand.id !== id);
+  }
+
+  fillBrandsWithSeedDataMock(brands: Brand[]) {
+    this.brands = brands;
   }
 }
