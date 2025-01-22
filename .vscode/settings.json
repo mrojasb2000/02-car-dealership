@@ -1,0 +1,8 @@
+{
+    "workbench.activityBar.location": "top",
+    "workbench.sideBar.location": "right",
+    "go.toolsManagement.autoUpdate": true,
+    "application.shellEnvironmentResolutionTimeout": 120,
+    "window.newWindowProfile": "NodeJS",
+    "material-icon-theme.activeIconPack": "nest"
+}
